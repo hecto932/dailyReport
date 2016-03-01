@@ -1,0 +1,223 @@
+{
+	"FarmCollection": [{
+		"id": "1",
+		"icon": "sap-icon://machine",
+		"number": "1",
+		"numberUnit": "Farm",
+		"title": "Bogotá",
+		"info": "This is a info's example",
+		"galpones": [{
+			"id": "1",
+			"icon": "sap-icon://factory",
+			"number": "1",
+			"numberUnit": "G1001",
+			"title": "Chicken type 1",
+			"info": "Infomation"
+		}, {
+			"id": "2",
+			"icon": "sap-icon://factory",
+			"number": "2",
+			"numberUnit": "G1002",
+			"title": "Chicken type 2",
+			"info": "Information"
+		}, {
+			"id": "3",
+			"icon": "sap-icon://factory",
+			"number": "3",
+			"numberUnit": "G1003",
+			"title": "Chicken type 3",
+			"info": "Infomation"
+		}, {
+			"id": "4",
+			"icon": "sap-icon://factory",
+			"number": "4",
+			"numberUnit": "G1004",
+			"title": "Chicken type 4",
+			"info": "Information"
+		}, {
+			"id": "5",
+			"icon": "sap-icon://factory",
+			"number": "5",
+			"numberUnit": "G1005",
+			"title": "Chicken type 5",
+			"info": "Infomation"
+		}, {
+			"id": "6",
+			"icon": "sap-icon://factory",
+			"number": "6",
+			"numberUnit": "G1006",
+			"title": "Chicken type 6",
+			"info": "Information"
+		}]
+	}, {
+		"id": "2",
+		"icon": "sap-icon://machine",
+		"number": "2",
+		"numberUnit": "Farm",
+		"title": "Medellín",
+		"info": "This is a info's example",
+		"galpones": [{
+			"id": "1",
+			"icon": "sap-icon://factory",
+			"number": "1",
+			"numberUnit": "G2001",
+			"title": "Chicken type 1",
+			"info": "Infomation"
+		}, {
+			"id": "2",
+			"icon": "sap-icon://factory",
+			"number": "2",
+			"numberUnit": "G2002",
+			"title": "Chicken type 2",
+			"info": "Information"
+		}, {
+			"id": "3",
+			"icon": "sap-icon://factory",
+			"number": "3",
+			"numberUnit": "G2003",
+			"title": "Chicken type 3",
+			"info": "Infomation"
+		}, {
+			"id": "4",
+			"icon": "sap-icon://factory",
+			"number": "4",
+			"numberUnit": "G2004",
+			"title": "Chicken type 4",
+			"info": "Information"
+		}, {
+			"id": "5",
+			"icon": "sap-icon://factory",
+			"number": "5",
+			"numberUnit": "G2005",
+			"title": "Chicken type 5",
+			"info": "Infomation"
+		}, {
+			"id": "6",
+			"icon": "sap-icon://factory",
+			"number": "6",
+			"numberUnit": "G2006",
+			"title": "Chicken type 6",
+			"info": "Information"
+		}]
+	}, {
+		"id": "3",
+		"icon": "sap-icon://machine",
+		"number": "3",
+		"numberUnit": "Farm",
+		"title": "Cali",
+		"info": "This is a info's example",
+		"galpones": [{
+			"id": "1",
+			"icon": "sap-icon://factory",
+			"number": "1",
+			"numberUnit": "G3001",
+			"title": "Chicken type 1",
+			"info": "Infomation"
+		}, {
+			"id": "2",
+			"icon": "sap-icon://factory",
+			"number": "2",
+			"numberUnit": "G3002",
+			"title": "Chicken type 2",
+			"info": "Information"
+		}, {
+			"id": "3",
+			"icon": "sap-icon://factory",
+			"number": "3",
+			"numberUnit": "G3003",
+			"title": "Chicken type 3",
+			"info": "Infomation"
+		}, {
+			"id": "4",
+			"icon": "sap-icon://factory",
+			"number": "4",
+			"numberUnit": "G3004",
+			"title": "Chicken type 4",
+			"info": "Information"
+		}, {
+			"id": "5",
+			"icon": "sap-icon://factory",
+			"number": "5",
+			"numberUnit": "G3005",
+			"title": "Chicken type 5",
+			"info": "Infomation"
+		}, {
+			"id": "6",
+			"icon": "sap-icon://factory",
+			"number": "6",
+			"numberUnit": "G3006",
+			"title": "Chicken type 6",
+			"info": "Information"
+		}]
+	}, {
+		"id": "4",
+		"icon": "sap-icon://machine",
+		"number": "4",
+		"numberUnit": "Farm",
+		"title": "Barranquilla",
+		"info": "This is a info's example"
+	}, {
+		"id": "5",
+		"icon": "sap-icon://machine",
+		"number": "5",
+		"numberUnit": "Farm",
+		"title": "Cartagena de Indias",
+		"info": "This is a info's example"
+	}, {
+		"id": "6",
+		"icon": "sap-icon://machine",
+		"number": "6",
+		"numberUnit": "Farm",
+		"title": "Cúcuta",
+		"info": "This is a info's example"
+	}, {
+		"id": "7",
+		"icon": "sap-icon://machine",
+		"number": "7",
+		"numberUnit": "Farm",
+		"title": "Soledad",
+		"info": "This is a info's example"
+	}, {
+		"id": "8",
+		"icon": "sap-icon://machine",
+		"number": "8",
+		"numberUnit": "Farm",
+		"title": "Ibagué",
+		"info": "This is a info's example"
+	}, {
+		"id": "9",
+		"icon": "sap-icon://machine",
+		"number": "9",
+		"numberUnit": "Farm",
+		"title": "Bucaramanga",
+		"info": "This is a info's example"
+	}, {
+		"id": "10",
+		"icon": "sap-icon://machine",
+		"number": "10",
+		"numberUnit": "Farm",
+		"title": "Soacha",
+		"info": "This is a info's example"
+	}, {
+		"id": "11",
+		"icon": "sap-icon://machine",
+		"number": "11",
+		"numberUnit": "Farm",
+		"title": "Santa Marta",
+		"info": "This is a info's example"
+	}, {
+		"id": "12",
+		"icon": "sap-icon://machine",
+		"number": "12",
+		"numberUnit": "Farm",
+		"title": "Villavicencio",
+		"info": "This is a info's example"
+	}, {
+		"id": "13",
+		"icon": "sap-icon://machine",
+		"number": "13",
+		"numberUnit": "Farm",
+		"title": "Bello",
+		"info": "This is a info's example"
+	}]
+}
