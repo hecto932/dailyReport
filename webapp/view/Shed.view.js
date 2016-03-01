@@ -13,6 +13,7 @@ sap.ui.jsview("dailyReport.view.Shed", {
 	 * @memberOf dailyReport.view.Shed
 	 */
 	createContent: function(oController) {
+
 		var templateTile = new sap.m.StandardTile({
 			title: "{title}",
 			info: "{info}",
@@ -26,7 +27,7 @@ sap.ui.jsview("dailyReport.view.Shed", {
 		
 		var TileContainer = new sap.m.TileContainer("ShedContainer", {});
 		
-		TileContainer.bindAggregation("tiles", "/galpones",templateTile);
+		TileContainer.bindAggregation("tiles", "galpones",templateTile);
 		
  		return new sap.m.Page({
 			title: "{title}",

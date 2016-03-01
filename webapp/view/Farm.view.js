@@ -27,7 +27,7 @@ sap.ui.jsview("dailyReport.view.Farm", {
 		
 		var TileContainer = new sap.m.TileContainer("FarmContainer", {});
 		
-		TileContainer.bindAggregation("tiles", "/FarmCollection",templateTile);
+		TileContainer.bindAggregation("tiles", "/FarmCollection", templateTile);
 		
  		return new sap.m.Page({
 			title: "{i18n>report_title}",

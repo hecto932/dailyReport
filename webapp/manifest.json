@@ -14,10 +14,10 @@
 			"id": "ui5template.basicSAPUI5ApplicationProject",
 			"version": "1.32.0"
 		},
-		 "dataSources": {
+		"dataSources": {
 			"tiles": {
-    			"uri": "model/data.json",
-    			"type": "JSON"
+				"uri": "model/data.json",
+				"type": "JSON"
 			}
 		}
 	},
@@ -69,7 +69,7 @@
 				}
 			},
 			"": {
-    			"dataSource": "tiles"
+				"dataSource": "tiles"
 			}
 		},
 		"routing": {
@@ -81,15 +81,19 @@
 				"controlAggregation": "pages",
 				"transition": "slide",
 				"bypassed": {
-            		"target": "notFound"
-            	}
+					"target": "notFound"
+				}
 			},
 			"routes": [{
 				"pattern": "",
 				"name": "appHome",
 				"target": "home"
-			},{
-				"pattern": "sheds/{farmPath}",
+			}, {
+				"pattern": "farm/{farmPath}",
+				"name": "farm",
+				"target": "farm"
+			}, {
+				"pattern": "sheds/{shedsPath}",
 				"name": "sheds",
 				"target": "sheds"
 			}],
@@ -99,15 +103,20 @@
 					"viewType": "JS",
 					"viewLevel": 1
 				},
-				"sheds": {
+				"farm": {
 					"viewName": "Shed",
 					"viewType": "JS",
 					"viewLevel": 2
 				},
-            	"notFound": {
-            		"viewName": "NotFound",
-            		"transition": "show"
-            	}
+				"sheds": {
+					"viewName": "Form",
+					"viewType": "JS",
+					"viewLevel": 3
+				},
+				"notFound": {
+					"viewName": "NotFound",
+					"transition": "show"
+				}
 			}
 		},
 		"resources": {

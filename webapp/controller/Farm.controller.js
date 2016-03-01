@@ -16,8 +16,12 @@ sap.ui.define([
 		handlePress: function(oEvent){
 			var oItem = oEvent.getSource();
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("sheds", {
-				farmPath: oItem.getBindingContext().getPath().substr(1).replace(/\//,".")
+			console.log("Normal URL");
+			console.log(oItem.getBindingContext().getPath());
+			console.log("Codificado");
+			console.log(encodeURIComponent(oItem.getBindingContext().getPath()));
+			oRouter.navTo("farm", {
+				farmPath: encodeURIComponent(oItem.getBindingContext().getPath())
 			});
 		},
 		onDisplayNotFound : function () {
