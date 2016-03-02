@@ -10,36 +10,28 @@ sap.ui.define([
 			
 			var sPath = jQuery.sap.getModulePath("dailyReport.model", "/data.json");
 			var oModel = new sap.ui.model.json.JSONModel(sPath);
-			//console.log(oModel);
 			this.getView().setModel(oModel);
 			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("farm").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
-			var path =  decodeURIComponent(oEvent.getParameter("arguments").farmPath);
 			this._oRouterArgs = oEvent.getParameter("arguments");
 			
 			this.getView().bindElement({
-				path: path
+				path: "/FarmCollection/" + this._oRouterArgs.farmId
 			});
 		},
 		handlePress: function(oEvent){
+
 			var oItem = oEvent.getSource();
-			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			
-			var shedsPath = encodeURIComponent(oItem.getBindingContext().getPath());
-			
-			console.log(oItem.getBindingContext().getObject());
-			
-			/*console.log("Normal URL");
-			console.log(oItem.getBindingContext().getPath());
-			console.log("Codificado");
-			console.log(encodeURIComponent(oItem.getBindingContext().getPath()));*/
+			var path = oItem.getBindingContext().getPath();
+			var splitPath = oItem.getBindingContext().getPath().split("/");
 			
 			oRouter.navTo("sheds", {
-				shedsPath: shedsPath
+				farmId: this._oRouterArgs.farmId,
+				shedId: splitPath[4]
 			});
 		}
 

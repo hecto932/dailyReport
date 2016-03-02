@@ -89,11 +89,11 @@
 				"name": "appHome",
 				"target": "home"
 			}, {
-				"pattern": "farm/{farmPath}",
+				"pattern": "farm/{farmId}",
 				"name": "farm",
 				"target": "farm"
 			}, {
-				"pattern": "sheds/{shedsPath}",
+				"pattern": "farm/{farmId}/shed/{shedId}",
 				"name": "sheds",
 				"target": "sheds"
 			}],

@@ -12,32 +12,37 @@ sap.ui.define([
 		 * @memberOf dailyReport.view.Form
 		 */
 		onInit: function() {
+
 			var sPath = jQuery.sap.getModulePath("dailyReport.model", "/data.json");
 			var oModel = new sap.ui.model.json.JSONModel(sPath);
-			//console.log(oModel);
 			this.getView().setModel(oModel);
 			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("sheds").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function(oEvent) {
-			var path = decodeURIComponent(oEvent.getParameter("arguments").shedsPath);
-			//this._oRouterArgs = oEvent.getParameter("arguments");
-			//this.splitPath = path.substr(1).split("/");
-			
-			console.log(this.getView().getModel().getProperty(""));
-			
-			//console.log("Argumentos recibidos");
-			//console.log(this._oRouterArgs);
-			
-			//var path = oItem.getBindingContext().getPath();
-			//console.log(path.substr(1).split("/"));
-			//console.log("Normal SV -> " + path);
+
+			var oModel = this.getView().getModel();
+
+			this._oRouterArgs = oEvent.getParameter("arguments");
 			
 			this.getView().bindElement({
-				path: path
+				path: "/FarmCollection/" + this._oRouterArgs.farmId
 			});
-		}
+
+			var galponNumber = oModel.getProperty("/FarmCollection/" + this._oRouterArgs.farmId + "/galpones/" + this._oRouterArgs.shedId + "/title");
+			var galponNumberUnit = oModel.getProperty("/FarmCollection/" + this._oRouterArgs.farmId + "/galpones/" + this._oRouterArgs.shedId + "/numberUnit");
+
+			this.getView().getModel().setProperty("/FarmCollection/" + this._oRouterArgs.farmId + "/galponNumber", galponNumber);
+			this.getView().getModel().setProperty("/FarmCollection/" + this._oRouterArgs.farmId + "/galponLote", galponNumberUnit);
+		},
+		BtnGenerate : function(oEvent) {
+	        sap.ui.getCore().getElementById("_age").setValue("");
+	        sap.ui.getCore().getElementById("_mortality").setValue("");
+	        sap.ui.getCore().getElementById("_discard").setValue("");
+	        sap.ui.getCore().getElementById("_consumption").setValue("");
+	        this.onNavBack(oEvent);
+	    }
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
