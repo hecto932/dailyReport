@@ -7,6 +7,12 @@ sap.ui.define([
 	return BaseController.extend("dailyReport.controller.Shed", {
 
 		onInit: function () {
+			
+			var sPath = jQuery.sap.getModulePath("dailyReport.model", "/data.json");
+			var oModel = new sap.ui.model.json.JSONModel(sPath);
+			//console.log(oModel);
+			this.getView().setModel(oModel);
+			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("farm").attachPatternMatched(this._onObjectMatched, this);
 		},

@@ -1,7 +1,7 @@
 sap.ui.define([
 	"dailyReport/controller/BaseController",
 	"sap/ui/core/routing/History"
-], function(BaseController, History) {
+], function(BaseController) {
 	"use strict";
 
 	return BaseController.extend("dailyReport.controller.Form", {
@@ -12,13 +12,20 @@ sap.ui.define([
 		 * @memberOf dailyReport.view.Form
 		 */
 		onInit: function() {
+			var sPath = jQuery.sap.getModulePath("dailyReport.model", "/data.json");
+			var oModel = new sap.ui.model.json.JSONModel(sPath);
+			//console.log(oModel);
+			this.getView().setModel(oModel);
+			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("sheds").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function(oEvent) {
 			var path = decodeURIComponent(oEvent.getParameter("arguments").shedsPath);
-			this._oRouterArgs = oEvent.getParameter("arguments");
-			this.splitPath = path.substr(1).split("/");
+			//this._oRouterArgs = oEvent.getParameter("arguments");
+			//this.splitPath = path.substr(1).split("/");
+			
+			console.log(this.getView().getModel().getProperty(""));
 			
 			//console.log("Argumentos recibidos");
 			//console.log(this._oRouterArgs);
