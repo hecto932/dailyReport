@@ -1,6 +1,7 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function(Controller) {
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/core/routing/History"
+], function(Controller, History) {
 	"use strict";
 
 	return Controller.extend("dailyReport.controller.Shed", {
@@ -10,12 +11,21 @@ sap.ui.define([
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf dailyReport.view.Shed
 		 */
-		onInit: function () {
+		onInit: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("farm").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
 			var path =  decodeURIComponent(oEvent.getParameter("arguments").farmPath);
+			this._oRouterArgs = oEvent.getParameter("arguments");
+			
+			console.log("Argumentos recibidos");
+			console.log(this._oRouterArgs);
+			
+			//var path = oItem.getBindingContext().getPath();
+			console.log(path.substr(1).split("/"));
+			console.log("Normal SV -> " + path);
+			
 			this.getView().bindElement({
 				path: path
 			});
@@ -23,10 +33,24 @@ sap.ui.define([
 		handlePress: function(oEvent){
 			var oItem = oEvent.getSource();
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			console.log("Normal URL");
 			console.log(oItem.getBindingContext().getPath());
+			console.log("Codificado");
+			console.log(encodeURIComponent(oItem.getBindingContext().getPath()));
 			oRouter.navTo("sheds", {
-				shedsPath: encodeURIComponent(oItem.getBindingContext().getPath())
+				shedsPath: this._oRouterArgs.farmPath
 			});
+		},
+		onNavBack: function () {
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.navTo("overview", true);
+			}
 		}
 
 		/**

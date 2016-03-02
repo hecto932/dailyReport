@@ -34,7 +34,11 @@ sap.ui.jsview("dailyReport.view.Shed", {
 			enableScrolling: false,
 			content: [
 				TileContainer
-			]
+			],
+			showNavButton: true,
+   			navButtonPress:  function () {  
+          		oController.onNavBack();
+      		}
 		});
 	}
 
