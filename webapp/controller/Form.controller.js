@@ -11,38 +11,25 @@ sap.ui.define([
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf dailyReport.view.Form
 		 */
-		onInit: function(oEvent) {
+		onInit: function() {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("sheds").attachPatternMatched(this._onObjectMatched, this);
-			var context = this.getView().getSource();
-			console.log(context);
 		},
 		_onObjectMatched: function(oEvent) {
 			var path = decodeURIComponent(oEvent.getParameter("arguments").shedsPath);
 			this._oRouterArgs = oEvent.getParameter("arguments");
 			this.splitPath = path.substr(1).split("/");
 			
-			console.log("Argumentos recibidos");
-			console.log(this._oRouterArgs);
+			//console.log("Argumentos recibidos");
+			//console.log(this._oRouterArgs);
 			
 			//var path = oItem.getBindingContext().getPath();
-			console.log(path.substr(1).split("/"));
-			console.log("Normal SV -> " + path);
+			//console.log(path.substr(1).split("/"));
+			//console.log("Normal SV -> " + path);
 			
 			this.getView().bindElement({
 				path: path
 			});
-		},
-		onNavBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-				oRouter.navTo("overview", true);
-			}
 		}
 
 		/**

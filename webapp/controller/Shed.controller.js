@@ -1,17 +1,12 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"dailyReport/controller/BaseController",
 	"sap/ui/core/routing/History"
-], function(Controller, History) {
+], function(BaseController, History) {
 	"use strict";
 
-	return Controller.extend("dailyReport.controller.Shed", {
+	return BaseController.extend("dailyReport.controller.Shed", {
 
-		/**
-		 * Called when a controller is instantiated and its View controls (if available) are already created.
-		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf dailyReport.view.Shed
-		 */
-		onInit: function (oEvent) {
+		onInit: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("farm").attachPatternMatched(this._onObjectMatched, this);
 		},
@@ -19,38 +14,27 @@ sap.ui.define([
 			var path =  decodeURIComponent(oEvent.getParameter("arguments").farmPath);
 			this._oRouterArgs = oEvent.getParameter("arguments");
 			
-			console.log("Argumentos recibidos");
-			console.log(this._oRouterArgs);
-			
-			//var path = oItem.getBindingContext().getPath();
-			console.log(path.substr(1).split("/"));
-			console.log("Normal SV -> " + path);
-			
 			this.getView().bindElement({
 				path: path
 			});
 		},
 		handlePress: function(oEvent){
 			var oItem = oEvent.getSource();
+			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			console.log("Normal URL");
+			
+			var shedsPath = encodeURIComponent(oItem.getBindingContext().getPath());
+			
+			console.log(oItem.getBindingContext().getObject());
+			
+			/*console.log("Normal URL");
 			console.log(oItem.getBindingContext().getPath());
 			console.log("Codificado");
-			console.log(encodeURIComponent(oItem.getBindingContext().getPath()));
+			console.log(encodeURIComponent(oItem.getBindingContext().getPath()));*/
+			
 			oRouter.navTo("sheds", {
-				shedsPath: this._oRouterArgs.farmPath
+				shedsPath: shedsPath
 			});
-		},
-		onNavBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-				oRouter.navTo("overview", true);
-			}
 		}
 
 		/**

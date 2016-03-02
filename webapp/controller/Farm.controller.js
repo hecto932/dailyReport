@@ -5,30 +5,16 @@ sap.ui.define([
 
 	return BaseController.extend("dailyReport.controller.Farm", {
 
-		/**
-		 * Called when a controller is instantiated and its View controls (if available) are already created.
-		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf report.view.Farm
-		 */
 		handlePress: function(oEvent) {
 			var oItem = oEvent.getSource();
-			//console.log(oItem.getBindingContext().getObject());
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var path = encodeURIComponent(oItem.getBindingContext().getPath());
 			
-			//console.log(oItem.getBindingContext().getModel());
-			//console.log(oItem.getBindingContext().getModel().getProperty("/FarmCollection/"));
-			//var path = oItem.getBindingContext().getPath();
-			//console.log(path.substr(1).split("/"));
-			//console.log("Normal -> " + path);
+			console.log(oEvent.getParameter("name"));
+			console.log(oItem.getBindingContext().getPath().split("/"));
 			
 			oRouter.navTo("farm", {
-				farmPath: encodeURIComponent(oItem.getBindingContext().getPath())
-			});
-		},
-		onDisplayNotFound: function() {
-			//display the "notFound" target without changing the hash
-			this.getRouter().getTargets().display("notFound", {
-				fromTarget: "home"
+				farmPath: path
 			});
 		}
 
