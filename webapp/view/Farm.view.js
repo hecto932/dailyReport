@@ -15,9 +15,9 @@ sap.ui.jsview("dailyReport.view.Farm", {
 	createContent: function(oController) {
 		
 		var templateTile = new sap.m.StandardTile({
-			title: "{title}",
-			info: "{info}",
-			number: "{number}",
+			title: "{NAME}",
+			info: "{DESCRIPTION}",
+			number: "{FARMID}",
 			numberUnit: "{numberUnit}",
 			icon: "{icon}",
 			press:  function(oEvent){
@@ -27,7 +27,7 @@ sap.ui.jsview("dailyReport.view.Farm", {
 		
 		var TileContainer = new sap.m.TileContainer("FarmContainer", {});
 		
-		TileContainer.bindAggregation("tiles", "/FarmCollection", templateTile);
+		TileContainer.bindAggregation("tiles", "/farm", templateTile);
 		
  		return new sap.m.Page({
 			title: "{i18n>report_title}",

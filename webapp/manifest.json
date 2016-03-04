@@ -76,7 +76,7 @@
 				}
 			},
 			"": {
-				"dataSource": "tiles"
+				"dataSource": "FARMS.farm"
 			}
 		},
 		"routing": {
