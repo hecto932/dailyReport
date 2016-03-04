@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:DataServices
+        xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+        <Schema Namespace="FARMS.farm"
+            xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+            xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="farmType">
+                <Key>
+                    <PropertyRef Name="CLIENT" />
+                    <PropertyRef Name="FARMID" />
+                </Key>
+                <Property Name="CLIENT" Type="Edm.Int32" Nullable="false" />
+                <Property Name="FARMID" Type="Edm.String" Nullable="false" MaxLength="8" />
+                <Property Name="FARMTYPE" Type="Edm.String" DefaultValue="" MaxLength="3" />
+                <Property Name="NAME" Type="Edm.String" DefaultValue="" MaxLength="50" />
+                <Property Name="DESCRIPTION" Type="Edm.String" DefaultValue="" MaxLength="255" />
+                <Property Name="LOCATION" Type="Edm.String" DefaultValue="" MaxLength="30" />
+                <Property Name="LAT_LOC" Type="Edm.String" DefaultValue="" MaxLength="10" />
+                <Property Name="LON_LOC" Type="Edm.String" DefaultValue="" MaxLength="10" />
+                <Property Name="AREA" Type="Edm.Int32" DefaultValue="0" />
+            </EntityType>
+            <EntityType Name="shedType">
+                <Key>
+                    <PropertyRef Name="CLIENT" />
+                    <PropertyRef Name="FARMID" />
+                    <PropertyRef Name="SHEDID" />
+                </Key>
+                <Property Name="CLIENT" Type="Edm.Int32" Nullable="false" />
+                <Property Name="FARMID" Type="Edm.String" Nullable="false" MaxLength="8" />
+                <Property Name="SHEDID" Type="Edm.String" Nullable="false" MaxLength="3" />
+                <Property Name="DESCRIPTION" Type="Edm.String" DefaultValue="" MaxLength="255" />
+                <Property Name="AREA" Type="Edm.Int32" DefaultValue="0" />
+                <Property Name="CAPACITY" Type="Edm.Int32" DefaultValue="0" />
+            </EntityType>
+            <EntityType Name="farmsType">
+                <Key>
+                    <PropertyRef Name="CLIENT" />
+                    <PropertyRef Name="FARMID" />
+                </Key>
+                <Property Name="CLIENT" Type="Edm.Int32" Nullable="false" />
+                <Property Name="FARMID" Type="Edm.String" Nullable="false" MaxLength="8" />
+                <Property Name="FARMTYPE" Type="Edm.String" DefaultValue="" MaxLength="3" />
+                <Property Name="NAME" Type="Edm.String" DefaultValue="" MaxLength="50" />
+                <Property Name="DESCRIPTION" Type="Edm.String" DefaultValue="" MaxLength="255" />
+                <Property Name="LOCATION" Type="Edm.String" DefaultValue="" MaxLength="30" />
+                <Property Name="LAT_LOC" Type="Edm.String" DefaultValue="" MaxLength="10" />
+                <Property Name="LON_LOC" Type="Edm.String" DefaultValue="" MaxLength="10" />
+                <Property Name="AREA" Type="Edm.Int32" DefaultValue="0" />
+                <NavigationProperty Name="Sheds_Id" Relationship="FARMS.farm.Sheds_IdType" FromRole="farmsPrincipal" ToRole="shedsDependent" />
+            </EntityType>
+            <EntityType Name="shedsType">
+                <Key>
+                    <PropertyRef Name="CLIENT" />
+                    <PropertyRef Name="FARMID" />
+                    <PropertyRef Name="SHEDID" />
+                </Key>
+                <Property Name="CLIENT" Type="Edm.Int32" Nullable="false" />
+                <Property Name="FARMID" Type="Edm.String" Nullable="false" MaxLength="8" />
+                <Property Name="SHEDID" Type="Edm.String" Nullable="false" MaxLength="3" />
+                <Property Name="DESCRIPTION" Type="Edm.String" DefaultValue="" MaxLength="255" />
+                <Property Name="AREA" Type="Edm.Int32" DefaultValue="0" />
+                <Property Name="CAPACITY" Type="Edm.Int32" DefaultValue="0" />
+            </EntityType>
+            <Association Name="Sheds_IdType">
+                <End Type="FARMS.farm.farmsType" Role="farmsPrincipal" Multiplicity="1"/>
+                <End Type="FARMS.farm.shedsType" Role="shedsDependent" Multiplicity="*"/>
+            </Association>
+            <EntityContainer Name="farm" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="farm" EntityType="FARMS.farm.farmType" />
+                <EntitySet Name="shed" EntityType="FARMS.farm.shedType" />
+                <EntitySet Name="farms" EntityType="FARMS.farm.farmsType" />
+                <EntitySet Name="sheds" EntityType="FARMS.farm.shedsType" />
+                <AssociationSet Name="Sheds_Id" Association="FARMS.farm.Sheds_IdType">
+                    <End Role="farmsPrincipal" EntitySet="farms"/>
+                    <End Role="shedsDependent" EntitySet="sheds"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -18,6 +18,14 @@
         "entryPath": "/test-resources"
       },
       "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/destinations/Farms",
+      "target": {
+        "type": "destination",
+        "name": "Farms"
+      },
+      "description": "Farm Connection to HANA XS"
     }
   ]
 }
