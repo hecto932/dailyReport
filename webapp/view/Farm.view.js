@@ -15,11 +15,11 @@ sap.ui.jsview("dailyReport.view.Farm", {
 	createContent: function(oController) {
 		
 		var templateTile = new sap.m.StandardTile({
-			title: "{NAME}",
+			title: "{LOCATION}",
 			info: "{DESCRIPTION}",
-			number: "{FARMID}",
-			numberUnit: "{numberUnit}",
-			icon: "{icon}",
+			number: "{FARMTYPE}",
+			numberUnit: "Area {AREA}",
+			icon: "sap-icon://machine",
 			press:  function(oEvent){
     			oController.handlePress(oEvent);
 			}

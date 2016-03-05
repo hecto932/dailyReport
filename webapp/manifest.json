@@ -76,7 +76,11 @@
 				}
 			},
 			"": {
-				"dataSource": "FARMS.farm"
+				"dataSource": "FARMS.farm",
+				"settings":  {
+					"user": "S0015228565",
+					"password": "Hana123456"
+				}
 			}
 		},
 		"routing": {
