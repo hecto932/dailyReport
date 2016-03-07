@@ -1,25 +1,30 @@
 sap.ui.define([
 	"dailyReport/controller/BaseController",
-	"sap/ui/core/routing/History"
-], function(BaseController, History) {
+	"sap/ui/core/routing/History",
+	"sap/ui/model/odata/ODataModel"
+], function(BaseController, History, ODataModel) {
 	"use strict";
 
 	return BaseController.extend("dailyReport.controller.Shed", {
 
 		onInit: function () {
-			
-			var sPath = jQuery.sap.getModulePath("dailyReport.model", "/data.json");
-			var oModel = new sap.ui.model.json.JSONModel(sPath);
-			this.getView().setModel(oModel);
+			var oModel = new sap.ui.model.odata.v2.ODataModel({
+				serviceUrl: "/destinations/Farms/farm.xsodata/",
+				user: "S0015228565",
+				password: "Hana123456"
+			});
+						
+			console.log(oModel.getData("farms"));
 			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("farm").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
 			this._oRouterArgs = oEvent.getParameter("arguments");
-			
+			console.log(oEvent.getParameter("arguments"));
+			console.log("farms(CLIENT=1,FARMID='" + this._oRouterArgs.farmId + "')" + "/Sheds_Id");
 			this.getView().bindElement({
-				path: "/FarmCollection/" + this._oRouterArgs.farmId
+				path: "farms(CLIENT=1,FARMID='" + this._oRouterArgs.farmId + "')" + "/Sheds_Id"
 			});
 		},
 		handlePress: function(oEvent){
