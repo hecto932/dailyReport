@@ -2,41 +2,35 @@ sap.ui.define([
 	"dailyReport/controller/BaseController",
 	"sap/ui/core/routing/History",
 	"sap/ui/model/odata/ODataModel"
-], function(BaseController, History, ODataModel) {
+], function(BaseController, ODataModel) {
 	"use strict";
 
 	return BaseController.extend("dailyReport.controller.Shed", {
 
 		onInit: function () {
-			var oModel = new sap.ui.model.odata.v2.ODataModel({
-				serviceUrl: "/destinations/Farms/farm.xsodata/",
-				user: "S0015228565",
-				password: "Hana123456"
-			});
-						
-			console.log(oModel.getData("farms"));
-			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("farm").attachPatternMatched(this._onObjectMatched, this);
+			var oDataModel = new sap.ui.model.odata.ODataModel("/destinations/Farms/farm.xsodata/");
+			this.getView().setModel(oDataModel);
 		},
 		_onObjectMatched: function (oEvent) {
 			this._oRouterArgs = oEvent.getParameter("arguments");
-			console.log(oEvent.getParameter("arguments"));
-			console.log("farms(CLIENT=1,FARMID='" + this._oRouterArgs.farmId + "')" + "/Sheds_Id");
+			console.log(this._oRouterArgs);
+			this.oPath = "/farms(CLIENT=1,FARMID='" + this._oRouterArgs.farmId + "')";
 			this.getView().bindElement({
-				path: "farms(CLIENT=1,FARMID='" + this._oRouterArgs.farmId + "')" + "/Sheds_Id"
+				path: this.oPath
 			});
 		},
 		handlePress: function(oEvent){
 
 			var oItem = oEvent.getSource();
+			var bindingObject = oItem.getBindingContext().getObject();
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			var path = oItem.getBindingContext().getPath();
-			var splitPath = oItem.getBindingContext().getPath().split("/");
+			console.log(bindingObject);
 			
 			oRouter.navTo("sheds", {
 				farmId: this._oRouterArgs.farmId,
-				shedId: splitPath[4]
+				shedId: oItem.getBindingContext().getObject().SHEDID
 			});
 		}
 

@@ -35,7 +35,7 @@ sap.ui.jsview("dailyReport.view.Form", {
 				}),
 				new sap.m.Input("_farm", {
 					enabled: false,
-					value: "{title}"
+					value: "{FARMID}"
 				}),
 				new sap.m.Label({
 					design: "Bold",
@@ -43,16 +43,16 @@ sap.ui.jsview("dailyReport.view.Form", {
 				}),
 				new sap.m.Input("_shed", {
 					enabled: false,
-					value: "{galponNumber}"
+					value: "{SHEDID}"
 				}),
-				new sap.m.Label({
+				/*new sap.m.Label({
 					design: "Bold",
 					text: "{i18n>label_lot}"
 				}),
 				new sap.m.Input("_lot", {
 					enabled: false,
-					value: "{galponLote}"
-				}),
+					value: "{LOT}"
+				}),*/
 				new sap.m.Label({
 					design: "Bold",
 					text: "{i18n>label_day}"

@@ -15,11 +15,11 @@ sap.ui.jsview("dailyReport.view.Shed", {
 	createContent: function(oController) {
 
 		var templateTile = new sap.m.StandardTile({
-			title: "{SHEDID}",
-			info: "{DESCRIPTION}",
-			number: "{number}",
-			numberUnit: "{numberUnit}",
-			icon: "{icon}",
+			title: "{DESCRIPTION}",
+			info: "Capacity: {CAPACITY}",
+			number: "{SHEDID}",
+			numberUnit: "{AREA} Mts",
+			icon: "sap-icon://factory",
 			press:  function(oEvent){
     			oController.handlePress(oEvent);
 			}
@@ -27,10 +27,10 @@ sap.ui.jsview("dailyReport.view.Shed", {
 		
 		var TileContainer = new sap.m.TileContainer("ShedContainer", {});
 		
-		TileContainer.bindAggregation("tiles", "galpones",templateTile);
+		TileContainer.bindAggregation("tiles", "Sheds_Id", templateTile);
 		
  		return new sap.m.Page({
-			title: "{SHEDID}",
+			title: "{LOCATION}",
 			enableScrolling: false,
 			content: [
 				TileContainer

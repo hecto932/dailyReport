@@ -6,35 +6,19 @@ sap.ui.define([
 
 	return BaseController.extend("dailyReport.controller.Form", {
 
-		/**
-		 * Called when a controller is instantiated and its View controls (if available) are already created.
-		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf dailyReport.view.Form
-		 */
 		onInit: function() {
-
-			var sPath = jQuery.sap.getModulePath("dailyReport.model", "/data.json");
-			var oModel = new sap.ui.model.json.JSONModel(sPath);
-			this.getView().setModel(oModel);
-			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("sheds").attachPatternMatched(this._onObjectMatched, this);
+			
+			var oDataModel = new sap.ui.model.odata.ODataModel("/destinations/Farms/farm.xsodata/");
+			this.getView().setModel(oDataModel);
 		},
 		_onObjectMatched: function(oEvent) {
-
-			var oModel = this.getView().getModel();
-
 			this._oRouterArgs = oEvent.getParameter("arguments");
-			
+			var path = "/sheds(CLIENT=1," + "FARMID='" + this._oRouterArgs.farmId + "',SHEDID='" + this._oRouterArgs.shedId +"')";
 			this.getView().bindElement({
-				path: "/FarmCollection/" + this._oRouterArgs.farmId
+				path: path
 			});
-
-			var galponNumber = oModel.getProperty("/FarmCollection/" + this._oRouterArgs.farmId + "/galpones/" + this._oRouterArgs.shedId + "/title");
-			var galponNumberUnit = oModel.getProperty("/FarmCollection/" + this._oRouterArgs.farmId + "/galpones/" + this._oRouterArgs.shedId + "/numberUnit");
-
-			this.getView().getModel().setProperty("/FarmCollection/" + this._oRouterArgs.farmId + "/galponNumber", galponNumber);
-			this.getView().getModel().setProperty("/FarmCollection/" + this._oRouterArgs.farmId + "/galponLote", galponNumberUnit);
 		},
 		BtnGenerate : function(oEvent) {
 	        sap.ui.getCore().getElementById("_age").setValue("");

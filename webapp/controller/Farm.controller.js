@@ -11,7 +11,7 @@ sap.ui.define([
 		handlePress: function(oEvent) {
 			var oItem = oEvent.getSource();
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			
+
 			var params = {
 				farmId: oItem.getBindingContext().getObject().FARMID
 			};
