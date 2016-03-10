@@ -16,17 +16,14 @@ sap.ui.define([
 		_onObjectMatched: function(oEvent) {
 			this._oRouterArgs = oEvent.getParameter("arguments");
 			var path = "/sheds(CLIENT=1," + "FARMID='" + this._oRouterArgs.farmId + "',SHEDID='" + this._oRouterArgs.shedId +"')";
-			console.log(path);
 			this.getView().bindElement({
 				path: path
 			});
 			
 			var jModel = new JSONModel();
 			var QueryPath = "farms(CLIENT=1,FARMID='"+ this._oRouterArgs.farmId + "')";
-			console.log("QueryPath -> " + QueryPath);
 			this.getView().getModel().read(QueryPath + "?$select=LOCATION", {
 				success: function(obj){
-					console.log(obj);
 					jModel.setData(obj);
 				},
 				error: function(err){
@@ -41,6 +38,10 @@ sap.ui.define([
 	        sap.ui.getCore().getElementById("_discard").setValue("");
 	        sap.ui.getCore().getElementById("_consumption").setValue("");
 	        this.onNavBack(oEvent);
+	    },
+	    handlePress: function(oEvent){
+	    	console.log("Hola");
+	    	console.log(sap.ui.getCore().getElementById("SelectType").getSelectedKey());
 	    }
 	});
 

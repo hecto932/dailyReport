@@ -17,10 +17,15 @@ sap.ui.jsview("dailyReport.view.Form", {
 		var CurrentDate = new Date();
 
 		var TemplateItem = new sap.ui.core.Item({
-			text: "{IND_ID} - {DESCRIPTION}"
+			text: "{IND_ID} - {DESCRIPTION}",
+			key: "{IND_ID}"
 		});
 
-		var Select = new sap.m.Select("SelectType", {});
+		var Select = new sap.m.Select("SelectType", {
+			change:  function(oEvent){
+    			oController.handlePress(oEvent);
+			}
+		});
 		
 		Select.bindAggregation("", "/report_variable",TemplateItem);
 
