@@ -1,7 +1,7 @@
 sap.ui.define([
 	"dailyReport/controller/BaseController",
-	"sap/ui/core/routing/History"
-], function(BaseController) {
+	"sap/ui/model/json/JSONModel"
+], function(BaseController, JSONModel) {
 	"use strict";
 
 	return BaseController.extend("dailyReport.controller.Form", {
@@ -16,9 +16,24 @@ sap.ui.define([
 		_onObjectMatched: function(oEvent) {
 			this._oRouterArgs = oEvent.getParameter("arguments");
 			var path = "/sheds(CLIENT=1," + "FARMID='" + this._oRouterArgs.farmId + "',SHEDID='" + this._oRouterArgs.shedId +"')";
+			console.log(path);
 			this.getView().bindElement({
 				path: path
 			});
+			
+			var jModel = new JSONModel();
+			var QueryPath = "farms(CLIENT=1,FARMID='"+ this._oRouterArgs.farmId + "')";
+			console.log("QueryPath -> " + QueryPath);
+			this.getView().getModel().read(QueryPath + "?$select=LOCATION", {
+				success: function(obj){
+					console.log(obj);
+					jModel.setData(obj);
+				},
+				error: function(err){
+					console.log(err);
+				}
+			});
+			this.getView().setModel(jModel, "FARM_LOCATION");
 		},
 		BtnGenerate : function(oEvent) {
 	        sap.ui.getCore().getElementById("_age").setValue("");
@@ -27,33 +42,6 @@ sap.ui.define([
 	        sap.ui.getCore().getElementById("_consumption").setValue("");
 	        this.onNavBack(oEvent);
 	    }
-
-		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf dailyReport.view.Form
-		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * This hook is the same one that SAPUI5 controls get after being rendered.
-		 * @memberOf dailyReport.view.Form
-		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-		 * @memberOf dailyReport.view.Form
-		 */
-		//	onExit: function() {
-		//
-		//	}
-
 	});
 
 });

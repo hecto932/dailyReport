@@ -13,9 +13,17 @@ sap.ui.jsview("dailyReport.view.Form", {
 	 * @memberOf dailyReport.view.Form
 	 */
 	createContent: function(oController) {
-		
+
 		var CurrentDate = new Date();
+
+		var TemplateItem = new sap.ui.core.Item({
+			text: "{IND_ID} - {DESCRIPTION}"
+		});
+
+		var Select = new sap.m.Select("SelectType", {});
 		
+		Select.bindAggregation("", "/report_variable",TemplateItem);
+
 		var SimpleForm = new sap.ui.layout.form.SimpleForm("FormShed", {
 			editable: true,
 			maxContainerCols: 2,
@@ -35,7 +43,7 @@ sap.ui.jsview("dailyReport.view.Form", {
 				}),
 				new sap.m.Input("_farm", {
 					enabled: false,
-					value: "{FARMID}"
+					value: "{FARM_LOCATION>/LOCATION}"
 				}),
 				new sap.m.Label({
 					design: "Bold",
@@ -52,7 +60,7 @@ sap.ui.jsview("dailyReport.view.Form", {
 				new sap.m.Input("_lot", {
 					enabled: false,
 					value: "{LOT}"
-				}),*/
+				}),
 				new sap.m.Label({
 					design: "Bold",
 					text: "{i18n>label_day}"
@@ -96,19 +104,23 @@ sap.ui.jsview("dailyReport.view.Form", {
 					type: sap.m.InputType.Number,
 					placeholder: "{i18n>ph_consumption}"
 				}),
+				*/
+				new sap.m.Label({
+					design: "Bold",
+					text: "Tipo reporte"
+				}),
+				Select,
 				new sap.m.Label(),
 				new sap.m.Button({
 					text: "Generate",
 					type: "Accept",
 					Align: "Center",
-					press: function(oEvent){
+					press: function(oEvent) {
 						oController.BtnGenerate(oEvent);
 					}
 				})
 			]
 		});
-
-		
 
 		return new sap.m.Page({
 			title: "{i18n>form_title}",
@@ -116,9 +128,9 @@ sap.ui.jsview("dailyReport.view.Form", {
 				SimpleForm
 			],
 			showNavButton: true,
-   			navButtonPress:  function () {  
-          		oController.onNavBack();
-      		}
+			navButtonPress: function() {
+				oController.onNavBack();
+			}
 		});
 	}
 
