@@ -40,8 +40,23 @@ sap.ui.define([
 	        this.onNavBack(oEvent);
 	    },
 	    handlePress: function(oEvent){
-	    	console.log("Hola");
-	    	console.log(sap.ui.getCore().getElementById("SelectType").getSelectedKey());
+	    	//report_variable(CLIENT='1',IND_ID='01',LANGU='ES')?$select=UNIT&$format=json
+	    	var language = navigator.language.toUpperCase();
+	    	var SelectedKey = sap.ui.getCore().getElementById("SelectType").getSelectedKey();
+	    	var vModel = this.getView().getModel();
+	    	var jModel = new JSONModel();
+			var QueryPath = "/report_variable(CLIENT='1',IND_ID='" + SelectedKey + "', LANGU='" + language + "')?$select=UNIT";
+			
+	    	vModel.read(QueryPath,{
+	    		success: function(obj){
+					jModel.setData(obj);
+				},
+				error: function(err){
+					console.log(err);
+				}
+	    	});
+	    	
+	    	this.getView().setModel(jModel, "REPORT_UNIT");
 	    }
 	});
 
