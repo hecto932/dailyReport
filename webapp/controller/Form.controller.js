@@ -31,6 +31,31 @@ sap.ui.define([
 				}
 			});
 			this.getView().setModel(jModel, "FARM_LOCATION");
+			
+			var iModel = new JSONModel();
+			var QueryPath = "sheds(CLIENT=1,FARMID='" + this._oRouterArgs.farmId + "',SHEDID='" + this._oRouterArgs.shedId + "')/this_batch?&$select=BATCHID";
+			this.getView().getModel().read(QueryPath, {
+				success: function(obj){
+					iModel.setData(obj);
+				},
+				error: function(err){
+					console.log(err);
+				}
+			});
+			this.getView().setModel(iModel, "SHED_BATCH");
+			
+			var kModel = new JSONModel();
+			var QueryPath = "report_variable(CLIENT='1',IND_ID='01',LANGU='ES')?$select=UNIT";
+			this.getView().getModel().read(QueryPath, {
+				success: function(obj){
+					kModel.setData(obj);
+				},
+				error: function(err){
+					console.log(err);
+				}
+			});
+			this.getView().setModel(kModel, "REPORT_UNIT");
+			
 		},
 		BtnGenerate : function(oEvent) {
 	        sap.ui.getCore().getElementById("_age").setValue("");

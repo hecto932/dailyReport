@@ -15,7 +15,7 @@ sap.ui.define([
 		},
 		_onObjectMatched: function (oEvent) {
 			this._oRouterArgs = oEvent.getParameter("arguments");
-			console.log(this._oRouterArgs);
+			//console.log(this._oRouterArgs);
 			this.oPath = "/farms(CLIENT=1,FARMID='" + this._oRouterArgs.farmId + "')";
 			this.getView().bindElement({
 				path: this.oPath
@@ -26,7 +26,7 @@ sap.ui.define([
 			var oItem = oEvent.getSource();
 			var bindingObject = oItem.getBindingContext().getObject();
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			console.log(bindingObject);
+			//console.log(bindingObject);
 			
 			oRouter.navTo("sheds", {
 				farmId: this._oRouterArgs.farmId,

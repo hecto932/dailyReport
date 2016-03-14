@@ -14,8 +14,6 @@ sap.ui.jsview("dailyReport.view.Form", {
 	 */
 	createContent: function(oController) {
 
-		var CurrentDate = new Date();
-
 		var TemplateItem = new sap.ui.core.Item({
 			text: "{IND_ID} - {DESCRIPTION}",
 			key: "{IND_ID}"
@@ -57,6 +55,14 @@ sap.ui.jsview("dailyReport.view.Form", {
 				new sap.m.Input("_shed", {
 					enabled: false,
 					value: "{SHEDID}"
+				}),
+				new sap.m.Label({
+					design: "Bold",
+					text: "{i18n>label_lot}"
+				}),
+				new sap.m.Input("_lot", {
+					enabled: false,
+					value: "{SHED_BATCH>/BATCHID}"
 				}),
 				new sap.m.Label({
 					design: "Bold",
