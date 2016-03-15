@@ -85,12 +85,12 @@ sap.ui.jsview("dailyReport.view.Form", {
 				new sap.m.Label(),
 				new sap.m.Input("_quantity", {
 					type: sap.m.InputType.Text,
-					placeholder: "Valor"
+					placeholder: "{i18n>ph_quantity}"
 				}),
 				new sap.m.Input("_unit", {
 					enabled: false,
 					type: sap.m.InputType.Text,
-					placeholder: "Unit",
+					placeholder: "{i18n>ph_unit}",
 					value: "{REPORT_UNIT>/UNIT}"
 				}),
 				new sap.m.Label(),
