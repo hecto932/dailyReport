@@ -55,13 +55,28 @@ sap.ui.define([
 				}
 			});
 			this.getView().setModel(kModel, "REPORT_UNIT");
-			
 		},
 		BtnGenerate : function(oEvent) {
-	        sap.ui.getCore().getElementById("_age").setValue("");
-	        sap.ui.getCore().getElementById("_mortality").setValue("");
-	        sap.ui.getCore().getElementById("_discard").setValue("");
-	        sap.ui.getCore().getElementById("_consumption").setValue("");
+			var oModel = this.getView().getModel();
+	        var oNotification = {
+    			CLIENT: "1",
+    			FARMID: sap.ui.getCore().getElementById("_farm").getValue(),
+    			SHEDID: sap.ui.getCore().getElementById("_shed").getValue(),
+    			BATCHID: sap.ui.getCore().getElementById("_lot").getValue(),
+    			DATE: sap.ui.getCore().getElementById("_date").getDateValue(),
+    			IND_ID: sap.ui.getCore().getElementById("SelectType").getSelectedKey(),
+    			QUANTITY: sap.ui.getCore().getElementById("_quantity").getValue(),
+    			UNIT: sap.ui.getCore().getElementById("_unit").getValue()
+			};
+			console.log(oNotification);
+			oModel.create("/notifications", oNotification, {
+				success: function(obj){
+					console.log(obj);
+				}, 
+				error: function(err){
+					console.log(err);
+				}
+			});
 	        this.onNavBack(oEvent);
 	    },
 	    handlePress: function(oEvent){

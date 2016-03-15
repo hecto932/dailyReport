@@ -13,7 +13,9 @@ sap.ui.jsview("dailyReport.view.Form", {
 	 * @memberOf dailyReport.view.Form
 	 */
 	createContent: function(oController) {
-
+		
+		var CurrentDate = new Date();
+		
 		var TemplateItem = new sap.ui.core.Item({
 			text: "{IND_ID} - {DESCRIPTION}",
 			key: "{IND_ID}"
@@ -46,7 +48,8 @@ sap.ui.jsview("dailyReport.view.Form", {
 				}),
 				new sap.m.Input("_farm", {
 					enabled: false,
-					value: "{FARM_LOCATION>/LOCATION}"
+					value: "{FARMID}"
+					//value: "{FARM_LOCATION>/LOCATION}"
 				}),
 				new sap.m.Label({
 					design: "Bold",
@@ -66,11 +69,21 @@ sap.ui.jsview("dailyReport.view.Form", {
 				}),
 				new sap.m.Label({
 					design: "Bold",
+					text: "{i18n>label_day}"
+				}),
+				new sap.m.DatePicker("_date", {
+					enabled: true,
+					format: "dd-mm-yyyy",
+					placeholder: "dd-mm-yyyy",
+					dateValue: CurrentDate
+				}),
+				new sap.m.Label({
+					design: "Bold",
 					text: "{i18n>label_SelectType}"
 				}),
 				Select,
 				new sap.m.Label(),
-				new sap.m.Input("_value", {
+				new sap.m.Input("_quantity", {
 					type: sap.m.InputType.Text,
 					placeholder: "Valor"
 				}),
