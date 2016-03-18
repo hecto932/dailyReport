@@ -22,7 +22,7 @@ sap.ui.define([
 			});
 		},
 		handlePress: function(oEvent){
-
+			
 			var oItem = oEvent.getSource();
 			var bindingObject = oItem.getBindingContext().getObject();
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);

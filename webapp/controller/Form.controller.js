@@ -55,6 +55,18 @@ sap.ui.define([
 				}
 			});
 			this.getView().setModel(kModel, "REPORT_UNIT");
+			
+			var zModel = new JSONModel();
+			var QueryPath = "sheds(CLIENT=1,FARMID='" + this._oRouterArgs.farmId + "',SHEDID='" + this._oRouterArgs.shedId + "')/configuration";
+			this.getView().getModel().read(QueryPath, {
+				success: function(obj){
+					zModel.setData(obj);
+				},
+				error: function(err){
+					console.log(err);
+				}
+			});
+			this.getView().setModel(zModel, "CONFIGURATION");
 		},
 		BtnGenerate : function(oEvent) {
 			var oModel = this.getView().getModel();

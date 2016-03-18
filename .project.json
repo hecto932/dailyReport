@@ -6,7 +6,8 @@
   "build": {
     "targetFolder": "dist",
     "sourceFolder": "webapp",
-    "buildRequired": true
+    "buildRequired": true,
+    "lastBuildDateTime": "Tue, 15 Mar 2016 19:34:31 GMT"
   },
   "generation": [
     {
@@ -38,5 +39,10 @@
     "loadJSONFiles": false,
     "loadCustomRequests": false,
     "mockRequestsFilePath": ""
+  },
+  "hcpdeploy": {
+    "account": "b164b04a7",
+    "name": "dailyreporodata",
+    "lastVersionWeTriedToDeploy": "1.0.1"
   }
 }

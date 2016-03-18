@@ -77,7 +77,7 @@
 			},
 			"": {
 				"dataSource": "FARMS.farm",
-				"settings":  {
+				"settings": {
 					"user": "S0015228565",
 					"password": "Hana123456"
 				}
@@ -141,5 +141,9 @@
 				}
 			]
 		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
 	}
 }
